@@ -1,5 +1,8 @@
 package gon.cue;
 
+
+import gon.cue.core.FSAcess;
+
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -52,7 +55,7 @@ public class App implements MegaRequestListenerInterface, MegaTransferListenerIn
         }
     }
 
-    public static void main(String[] args) {
+    public static void doProcess() {
         App myListener = new App();
 
         // Execute a sequence of jobs on the Mega API.
@@ -235,7 +238,8 @@ public class App implements MegaRequestListenerInterface, MegaTransferListenerIn
 
         log.info("Total time taken: " + ((System.currentTimeMillis() - startTime) / 1000) + " s");
     }
-    
+
+
     // Implementation of listener methods.
 
     /**
@@ -434,5 +438,13 @@ public class App implements MegaRequestListenerInterface, MegaTransferListenerIn
     public void onReloadNeeded(MegaApiJava api) {
         // TODO Auto-generated method stub
 
+    }
+
+    public static void main(String[] args) {
+        //doProcess();
+
+        FSAcess fsa = new FSAcess();
+        
+        fsa.runWithPrivileges();
     }
 }
