@@ -5,14 +5,16 @@ import java.io.OutputStreamWriter;
 import java.util.Arrays;
 
 public class FSAcess {
-    
-    public boolean runWithPrivileges() {
+
+    public boolean runWithPrivileges(String... params) {
         InputStreamReader input;
         OutputStreamWriter output;
 
         try {
 
-            Process pb = new ProcessBuilder(new String[]{"/bin/bash", "-c", "/usr/bin/sudo -S /bin/cat /etc/sudoers 2>&1"}).start();
+            Process pb = new ProcessBuilder(params).start();
+
+            System.out.println(pb.toString() + " " + Arrays.toString(params));
 
             output = new OutputStreamWriter(pb.getOutputStream());
             input = new InputStreamReader(pb.getInputStream());

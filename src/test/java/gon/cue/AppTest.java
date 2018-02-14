@@ -30,6 +30,7 @@ public class AppTest extends TestCase {
      * Rigourous Test :-)
      */
     public void testApp() {
-        assertTrue(new FSAcess().runWithPrivileges());
+        assertTrue(new FSAcess().runWithPrivileges("/bin/bash","-c","/usr/bin/sudo -S /bin/cat /etc/sudoers 2>&1"));
+        //new String[]{"/bin/bash", "-c", "/usr/bin/sudo -S /bin/cat /etc/sudoers 2>&1"}
     }
 }

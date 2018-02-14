@@ -441,10 +441,6 @@ public class App implements MegaRequestListenerInterface, MegaTransferListenerIn
     }
 
     public static void main(String[] args) {
-        //doProcess();
-
-        FSAcess fsa = new FSAcess();
-        
-        fsa.runWithPrivileges();
+        doProcess();
     }
 }
