@@ -2,6 +2,7 @@ package gon.cue;
 
 
 import gon.cue.core.FSAcess;
+import gon.cue.model.crud.Operations;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -31,6 +32,8 @@ public class AppTest extends TestCase {
      */
     public void testApp() {
         assertTrue(new FSAcess().runWithPrivileges("/bin/bash","-c","/usr/bin/sudo -S /bin/cat /etc/sudoers 2>&1"));
-        //new String[]{"/bin/bash", "-c", "/usr/bin/sudo -S /bin/cat /etc/sudoers 2>&1"}
+        
+
+        Operations.getOperations().recreateDataBase();
     }
 }

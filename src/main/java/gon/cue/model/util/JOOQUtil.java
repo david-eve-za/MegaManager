@@ -2,6 +2,8 @@ package gon.cue.model.util;
 
 import static org.jooq.impl.DSL.constraint;
 
+import gon.cue.model.ddl.Public;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -30,7 +32,7 @@ public class JOOQUtil {
 
 		StringBuilder strConnect = new StringBuilder();
 
-		strConnect.append("jdbc:h2:file:./").append(DBName).append(";DB_CLOSE_DELAY=-1;MVCC=TRUE");
+		strConnect.append("jdbc:hsqldb:file:./").append(DBName);
 
 		Settings settings = new Settings();
 
@@ -42,7 +44,7 @@ public class JOOQUtil {
 
 			conn = DriverManager.getConnection(strConnect.toString(), User, Pass);
 
-			create = DSL.using(conn, SQLDialect.H2, settings);
+			create = DSL.using(conn, SQLDialect.HSQLDB, settings);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
