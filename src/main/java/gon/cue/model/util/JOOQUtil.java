@@ -21,6 +21,8 @@ import org.jooq.ForeignKey;
 import org.jooq.SQLDialect;
 import org.jooq.UniqueKey;
 import org.jooq.conf.Settings;
+import org.jooq.util.jaxb.Configuration;
+import org.jooq.util.jaxb.Jdbc;
 import org.jooq.impl.DSL;
 
 public class JOOQUtil {
@@ -29,22 +31,32 @@ public class JOOQUtil {
 	protected DSLContext create;
 
 	public JOOQUtil(String DBName, String User, String Pass) {
+	    
+	    Configuration config = new Configuration().withJdbc(
+	    new Jdbc()
+    .withDriver("org.hsqldb.jdbcDriver")
+    .withUrl("jdbc:hsqldb:file:./"+DBName)
+    .withUser(User)
+    .withPassword(Pass)
+	    );
 
-		StringBuilder strConnect = new StringBuilder();
+		/*StringBuilder strConnect = new StringBuilder();
 
 		strConnect.append("jdbc:hsqldb:file:./").append(DBName);
 
 		Settings settings = new Settings();
 
-		settings.withExecuteLogging(true);
+		settings.withExecuteLogging(true);*/
 
 		initializeLog4j();
 
 		try {
 
-			conn = DriverManager.getConnection(strConnect.toString(), User, Pass);
+			/*conn = DriverManager.getConnection(strConnect.toString(), User, Pass);
 
-			create = DSL.using(conn, SQLDialect.HSQLDB, settings);
+			create = DSL.using(conn, SQLDialect.HSQLDB, settings);*/
+			
+			create = DSL.using(config);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
