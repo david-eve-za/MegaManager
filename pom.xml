@@ -98,8 +98,19 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.7.0</version>
         <configuration>
+          <fork>true</fork>
+          <maxmem>1024m</maxmem>
+          <meminitial>256m</meminitial>
+          <encoding>UTF-8</encoding>
           <source>1.8</source>
           <target>1.8</target>
+          <debug>true</debug>
+          <debuglevel>lines,vars,source</debuglevel>
+          <!-- [#2413] Make compiler warnings a bit more visible
+                         But don't fail (yet) -->
+          <compilerArgs>
+            <arg>-Xlint:varargs</arg>
+          </compilerArgs>
         </configuration>
       </plugin>
     </plugins>

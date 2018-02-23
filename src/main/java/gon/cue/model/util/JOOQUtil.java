@@ -1,7 +1,6 @@
 package gon.cue.model.util;
 
 import static org.jooq.impl.DSL.constraint;
-
 import gon.cue.model.ddl.Public;
 
 import java.sql.Connection;
@@ -21,8 +20,6 @@ import org.jooq.ForeignKey;
 import org.jooq.SQLDialect;
 import org.jooq.UniqueKey;
 import org.jooq.conf.Settings;
-import org.jooq.util.jaxb.Configuration;
-import org.jooq.util.jaxb.Jdbc;
 import org.jooq.impl.DSL;
 
 public class JOOQUtil {
@@ -32,31 +29,27 @@ public class JOOQUtil {
 
 	public JOOQUtil(String DBName, String User, String Pass) {
 	    
-	    Configuration config = new Configuration().withJdbc(
-	    new Jdbc()
-    .withDriver("org.hsqldb.jdbcDriver")
-    .withUrl("jdbc:hsqldb:file:./"+DBName)
-    .withUser(User)
-    .withPassword(Pass)
-	    );
+	    try {
+            Class.forName("org.hsqldb.jdbcDriver");
+        } catch (ClassNotFoundException e1) {
+            e1.printStackTrace();
+        }
 
-		/*StringBuilder strConnect = new StringBuilder();
+		StringBuilder strConnect = new StringBuilder();
 
 		strConnect.append("jdbc:hsqldb:file:./").append(DBName);
 
 		Settings settings = new Settings();
 
-		settings.withExecuteLogging(true);*/
+		settings.withExecuteLogging(true);
 
 		initializeLog4j();
 
 		try {
 
-			/*conn = DriverManager.getConnection(strConnect.toString(), User, Pass);
+			conn = DriverManager.getConnection(strConnect.toString(), User, Pass);
 
-			create = DSL.using(conn, SQLDialect.HSQLDB, settings);*/
-			
-			create = DSL.using(config);
+			create = DSL.using(conn, SQLDialect.HSQLDB, settings);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -136,22 +129,5 @@ public class JOOQUtil {
 
 			System.out.println();
 		});
-	}
-
-	protected void recreateSchema() {
-
-		Public.PUBLIC.getTables().stream().forEach(item -> {
-//			System.out.println(create.dropTableIfExists(item));
-			create.dropTableIfExists(item).execute();
-		});
-
-		System.out.println();
-
-		Public.PUBLIC.getSequences().forEach(item -> {
-//			System.out.println("Execute query: \n" + create.dropSequenceIfExists(item));
-			create.dropSequenceIfExists(item).execute();
-		});
-
-		this.createSchema();
 	}
 }

@@ -36,8 +36,8 @@ public class Operations extends JOOQUtil {
 		return create.selectFrom(t);
 	}
 
-	public void recreateDataBase() {
-		super.recreateSchema();
+	public void createDataBase() {
+		super.createSchema();
 	}
 
 }

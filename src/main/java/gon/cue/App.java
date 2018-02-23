@@ -1,7 +1,6 @@
 package gon.cue;
 
 
-import gon.cue.core.FSAcess;
 import gon.cue.model.crud.Operations;
 
 import java.io.Console;
@@ -442,7 +441,7 @@ public class App implements MegaRequestListenerInterface, MegaTransferListenerIn
     }
 
     public static void main(String[] args) {
-        Operations.getOperations().recreateDataBase();
+        Operations.getOperations().createDataBase();
         doProcess();
     }
 }
