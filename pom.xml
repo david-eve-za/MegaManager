@@ -14,6 +14,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     UTF-8</project.build.sourceEncoding>
     <jooq.version>3.10.5</jooq.version>
     <guava.version>23.5-jre</guava.version>
+    <lib.dir>${basedir}/lib</lib.dir>
   </properties>
   <dependencies>
     <dependency>
@@ -21,6 +22,13 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>swt</groupId>
+      <artifactId>swt</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${lib.dir}/linux/swt.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
@@ -106,8 +114,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
           <target>1.8</target>
           <debug>true</debug>
           <debuglevel>lines,vars,source</debuglevel>
-          <!-- [#2413] Make compiler warnings a bit more visible
-                         But don't fail (yet) -->
           <compilerArgs>
             <arg>-Xlint:varargs</arg>
           </compilerArgs>
