@@ -1,7 +1,7 @@
 package gon.cue;
 
 
-import gon.cue.model.crud.Operations;
+import gon.cue.ui.Window;
 
 import java.io.Console;
 import java.util.ArrayList;
@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import nz.mega.sdk.MegaAccountDetails;
 import nz.mega.sdk.MegaApiJava;
+import nz.mega.sdk.MegaContactRequest;
 import nz.mega.sdk.MegaError;
 import nz.mega.sdk.MegaGlobalListenerInterface;
 import nz.mega.sdk.MegaNode;
@@ -17,7 +18,6 @@ import nz.mega.sdk.MegaRequestListenerInterface;
 import nz.mega.sdk.MegaTransfer;
 import nz.mega.sdk.MegaTransferListenerInterface;
 import nz.mega.sdk.MegaUser;
-import nz.mega.sdk.MegaContactRequest;
 
 /**
  * Start point for the application
@@ -441,7 +441,9 @@ public class App implements MegaRequestListenerInterface, MegaTransferListenerIn
     }
 
     public static void main(String[] args) {
-        Operations.getOperations().createDataBase();
-        doProcess();
+        //Operations.getOperations().createDataBase();
+        //doProcess();
+
+        new Window();
     }
 }

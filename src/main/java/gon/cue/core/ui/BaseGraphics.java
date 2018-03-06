@@ -4,17 +4,24 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 public class BaseGraphics {
+
     protected Display display;
-    protected Shell shell;
-    
+    protected Shell   shell;
+
     public BaseGraphics() {
         initDisplay();
         initShell();
     }
-    
-    public void openWindow(){
+
+    public void openWindow() {
         this.shell.open();
         keepOpen();
+    }
+
+    public void close() {
+        this.shell.close();
+        this.shell.dispose();
+        this.shell = null;
     }
 
     private void keepOpen() {
