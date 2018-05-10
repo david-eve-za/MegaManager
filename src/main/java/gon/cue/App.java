@@ -442,8 +442,8 @@ public class App implements MegaRequestListenerInterface, MegaTransferListenerIn
 
     public static void main(String[] args) {
         //Operations.getOperations().createDataBase();
-        //doProcess();
+        doProcess();
 
-        new Window();
+        //new Window();
     }
 }
